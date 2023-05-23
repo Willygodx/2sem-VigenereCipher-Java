@@ -114,6 +114,7 @@ public class Cipher {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private static String checkInput(Scanner scanner, String message) {
