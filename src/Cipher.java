@@ -16,10 +16,10 @@ public class Cipher {
 
     public Cipher() {
         table = new int[26][52];
-        initMatrix();
+        initTable();
     }
 
-    private void initMatrix() {
+    private void initTable() {
         for (int i = 0; i < 26; i++) {
             for (int j = 0; j < 26 - i; j++) {
                 table[i][j] = j + i;
@@ -39,7 +39,7 @@ public class Cipher {
         }
     }
 
-    public void encryptionText(String fileName, String textToEncrypt, String keyWordEncrypt) throws IOException {
+    public void encryptText(String fileName, String textToEncrypt, String keyWordEncrypt) throws IOException {
         int keyLength = keyWordEncrypt.length();
         keyWordEncrypt = keyWordEncrypt.toUpperCase();
 
@@ -62,7 +62,7 @@ public class Cipher {
         }
     }
 
-    public void decryptionText(String keyWordEncrypt) throws IOException {
+    public void decryptText(String keyWordEncrypt) throws IOException {
         keyWordEncrypt = keyWordEncrypt.toUpperCase();
 
         try (BufferedReader reader = new BufferedReader(new FileReader("CipherText.txt"));
@@ -103,14 +103,14 @@ public class Cipher {
         Scanner scanner = new Scanner(System.in);
 
         String fileName = "CipherText.txt";
-        String textToEncrypt = checkInput(scanner, "Input TEXT you want to encrypt! ");
-        String keyWordEncrypt = checkInput(scanner, "Input KEYWORD for encryption! ");
+        String textToEncrypt = checkInput(scanner, "Input TEXT you want to encrypt!");
+        String keyWordEncrypt = checkInput(scanner, "Input KEYWORD for encryption!");
 
         Cipher cipher = new Cipher();
 
         try {
-            cipher.encryptionText(fileName, textToEncrypt, keyWordEncrypt);
-            cipher.decryptionText(keyWordEncrypt);
+            cipher.encryptText(fileName, textToEncrypt, keyWordEncrypt);
+            cipher.decryptText(keyWordEncrypt);
         } catch (IOException e) {
             e.printStackTrace();
         }
